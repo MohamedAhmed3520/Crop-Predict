@@ -69,3 +69,5 @@ if st.button("Predict"):
 
         st.success(f"The predicted crop is: **{crop_name}**")
         st.balloons()
+    except Exception as e:
+        st.error(f"⚠️ An error occurred during prediction: {e}")
