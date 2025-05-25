@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 # Load data
 data = pd.read_csv("crop.csv")
-X = data.drop("label", axis=1)
+X = data.drop(["Unnamed: 0", "label"], axis=1)
 y = data["label"]
 
 # Split data
