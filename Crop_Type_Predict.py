@@ -69,9 +69,3 @@ if st.button("Predict"):
 
         st.success(f"The predicted crop is: **{crop_name}**")
         st.balloons()
-
-        st.write("✅ Model Validation Accuracy:")
-        st.write(f"**{model.score(x_val, y_val) * 100:.2f}%**")
-
-    except Exception as e:
-        st.error(f"⚠️ An error occurred during prediction: {e}")
