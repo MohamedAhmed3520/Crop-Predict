@@ -34,14 +34,40 @@ humidity = st.number_input("Humidity (%)")
 ph = st.number_input("pH Level")
 rainfall = st.number_input("Rainfall (mm)")
 
+label_decoder = {
+    0: "apple",
+    1: "banana",
+    2: "blackgram",
+    3: "chickpea",
+    4: "coconut",
+    5: "coffee",
+    6: "cotton",
+    7: "grapes",
+    8: "jute",
+    9: "kidneybeans",
+    10: "lentil",
+    11: "maize",
+    12: "mango",
+    13: "mothbeans",
+    14: "mungbean",
+    15: "muskmelon",
+    16: "orange",
+    17: "papaya",
+    18: "pigeonpeas",
+    19: "pomegranate",
+    20: "rice",
+    21: "watermelon"
+}
+
 if st.button("Predict"):
     try:
         input_df = pd.DataFrame([[N, P, K, temperature, humidity, ph, rainfall]],
                                 columns=X.columns)
         input_scaled = scaler.transform(input_df)
-        result = model.predict(input_scaled)[0]
+        predicted_label = model.predict(input_scaled)[0]
+        crop_name = label_decoder.get(predicted_label, "Unknown")
 
-        st.success(f"The predicted crop is: **{result}**")
+        st.success(f"The predicted crop is: **{crop_name}**")
         st.balloons()
 
         st.write("✅ Model Validation Accuracy:")
