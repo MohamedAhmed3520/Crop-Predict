@@ -35,15 +35,17 @@ ph = st.number_input("pH Level")
 rainfall = st.number_input("Rainfall (mm)")
 
 if st.button("Predict"):
-    # Ensure input shape is compatible and features match
-    input_df = pd.DataFrame([[N, P, K, temperature, humidity, ph, rainfall]],
-                            columns=X.columns)
-    input_scaled = scaler.transform(input_df)
-    result = model.predict(input_scaled)[0]
+    try:
+        input_df = pd.DataFrame([[N, P, K, temperature, humidity, ph, rainfall]],
+                                columns=X.columns)
+        input_scaled = scaler.transform(input_df)
+        result = model.predict(input_scaled)[0]
 
-    st.success(f"The predicted crop is: **{result}**")
-    st.balloons()
+        st.success(f"The predicted crop is: **{result}**")
+        st.balloons()
 
-    # Show model accuracy
-    st.write("✅ Model Validation Accuracy:")
-    st.write(f"**{model.score(x_val, y_val) * 100:.2f}%**")
+        st.write("✅ Model Validation Accuracy:")
+        st.write(f"**{model.score(x_val, y_val) * 100:.2f}%**")
+
+    except Exception as e:
+        st.error(f"⚠️ An error occurred during prediction: {e}")
