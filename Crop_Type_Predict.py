@@ -5,7 +5,7 @@ from sklearn.preprocessing import StandardScaler
 import joblib
 from sklearn.model_selection import GridSearchCV
 
-data = pd.read_csv("crop.csv")
+data = pd.read_csv("Crop_recommendation.csv")
 X = data.drop("label",axis=1)
 y = data["label"]
 
